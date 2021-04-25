@@ -13,7 +13,7 @@
 #include <Fonts/FreeSansBold24pt7b.h>
 #include <Fonts/FreeSans24pt7b.h>
 
-#include "private.h"
+#include "private.h"      //Has content private to my setup, like WiFi SSID and password as well as server addresses and api keys. 
 
 //Defined in private.h
 
@@ -22,7 +22,7 @@
 
 //#define SERVER_IP ""
 
-#define DEV_MODE true
+#define DEV_MODE true                 //This is used for printing various debug info to the serial port.
 
 #define VOLTAGE_DIVIDER_FACTOR .5       //I'm using two 10k resistors in the voltage divider
 
@@ -67,7 +67,7 @@ float temperature = 0;
 float humidity = 0;
 
 //Unique to each device
-String SENSOR_ID = "";
+String SENSOR_ID = "605aa2f0ea6fb36471aaf5a6";
 
 void setup() {
   
@@ -231,7 +231,7 @@ void updateDisplay() {
 
   //Battery
   int batteryMaxHeight = 45;
-  int batteryHeight = int(float(batteryMaxHeight) * (voltage/4.2));
+  int batteryHeight = int(float(batteryMaxHeight) * ((voltage-2.5)/(4.2-2.5)));
    
   
   display.fillRoundRect(BATT_START_X + ((BATT_WIDTH - BATT_TERMINAL_WIDTH)/2), BATT_START_Y - 5, 20, 10, 4, EPD_BLACK); //positive terminal
